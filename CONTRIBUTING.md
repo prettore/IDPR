@@ -7,8 +7,8 @@ Thank you for your interest in contributing to the IDPR project! This document p
 1. Fork the repository on GitHub
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/yourusername/IDPR-Intelligent-Drone-Positioning-and-Routing.git
-   cd IDPR-Intelligent-Drone-Positioning-and-Routing
+   git clone https://github.com/yourusername/IDPR.git
+   cd IDPR
    ```
 3. Create a new branch for your feature:
    ```bash

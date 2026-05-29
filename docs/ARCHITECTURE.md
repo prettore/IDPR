@@ -4,7 +4,9 @@ This document describes the architecture and key components of the IDPR project.
 
 ## System Architecture
 
-The IDPR system consists of three main components:
+The IDPR system provides two distinct optimization approaches: Reinforcement Learning (RL) and Genetic Algorithm (GA).
+
+### Reinforcement Learning Architecture (Python)
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -29,9 +31,38 @@ The IDPR system consists of three main components:
 └──────────────────────┘  └──────────────────────────────┘
 ```
 
+### Genetic Algorithm Architecture (C++)
+
+The GA implementation is structured as a pipeline of sequential steps (Passos):
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                   Genetic Algorithm Pipeline                 │
+│                                                             │
+│  [Passo 1] Population Initialization (Random topologies)    │
+│       │                                                     │
+│       ▼                                                     │
+│  [Passo 3] Fitness Evaluation (Latency, Reliability)        │
+│       │                                                     │
+│       ▼                                                     │
+│  [Passo 4] Selection (Tournament/Roulette)                  │
+│       │                                                     │
+│       ▼                                                     │
+│  [Passo 5] Crossover (Topology recombination)               │
+│       │                                                     │
+│       ▼                                                     │
+│  [Passo 6] Mutation (Random drone displacement)             │
+│       │                                                     │
+│       ▼                                                     │
+│  [Passo 7] Replacement & Elitism (Next generation)          │
+└─────────────────────────────────────────────────────────────┘
+```
+
 ## Core Modules
 
-### 1. 5GML.py - Main Training Script
+### 1. Reinforcement Learning (src/rl/)
+
+#### 5GML.py - Main Training Script
 
 **Purpose:** Orchestrates the entire training pipeline for the PPO agent.
 
@@ -62,7 +93,7 @@ The IDPR system consists of three main components:
 7. Train for specified number of timesteps
 8. Save best model and final model
 
-### 2. drone_env.py - Gymnasium Environment
+#### drone_env.py - Gymnasium Environment
 
 **Purpose:** Implements the drone positioning and routing problem as a Gymnasium environment.
 
@@ -104,7 +135,7 @@ The reward function combines multiple objectives:
 - Links crossing zones are penalized
 - Drones avoid positioning in zones
 
-### 3. calculaProbLink_otimizado.py - Link Reliability Module
+#### calculaProbLink_otimizado.py - Link Reliability Module
 
 **Purpose:** Calculates link reliability using the Friis free-space propagation model with log-normal fading.
 
@@ -134,6 +165,17 @@ The reward function combines multiple objectives:
 - LRU caching of link probability calculations (65536 entries)
 - Vectorized distance calculations using NumPy
 - Sparse matrix operations for large networks
+
+### 2. Genetic Algorithm (src/ga/)
+
+The GA implementation is written in C++ for maximum performance during the evolutionary process. It is divided into modular steps:
+
+- **Passo1 (Initialization)**: Generates the initial population of drone topologies. Ensures basic connectivity constraints are met.
+- **Passo3 (Evaluation)**: Calculates the fitness of each individual based on the objective function (minimizing latency and drone count while maximizing reliability).
+- **Passo4 (Selection)**: Selects the best individuals to become parents for the next generation.
+- **Passo5 (Crossover)**: Combines genetic material (drone positions and links) from two parents to create offspring.
+- **Passo6 (Mutation)**: Introduces random variations (moving a drone, adding/removing a link) to maintain genetic diversity.
+- **Passo7 (Replacement)**: Forms the new generation, applying elitism to preserve the best solutions found so far.
 
 ## Data Flow
 

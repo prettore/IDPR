@@ -17,9 +17,17 @@ Both evaluated approaches, GA and RL, operate on the same environment and share 
 ```
 IDPR-Intelligent-Drone-Positioning-and-Routing/
 ├── src/
-│   ├── 5GML.py                        # Main PPO training script
-│   ├── drone_env.py                   # Gymnasium environment for drone positioning
-│   └── calculaProbLink_otimizado.py   # Link reliability calculation module
+│   ├── rl/                            # Reinforcement Learning implementation
+│   │   ├── 5GML.py                    # Main PPO training script
+│   │   ├── drone_env.py               # Gymnasium environment for drone positioning
+│   │   └── calculaProbLink_otimizado.py # Link reliability calculation module
+│   └── ga/                            # Genetic Algorithm implementation (C++)
+│       ├── Passo1.cpp/h               # Initial population generation
+│       ├── Passo3.cpp/h               # Fitness evaluation
+│       ├── Passo4.cpp/h               # Selection
+│       ├── Passo5.cpp/h               # Crossover
+│       ├── Passo6.cpp/h               # Mutation
+│       └── Passo7.cpp/h               # Replacement and elitism
 ├── img/
 │   └── workflow.png                   # Methodology workflow diagram
 ├── requirements.txt                   # Python dependencies
@@ -32,8 +40,8 @@ To reproduce the proposed model, you need Python 3.8 or higher. It is recommende
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/IDPR.git
-   cd IDPR
+   git clone https://github.com/yourusername/IDPR-Intelligent-Drone-Positioning-and-Routing.git
+   cd IDPR-Intelligent-Drone-Positioning-and-Routing
    ```
 
 2. Create and activate a virtual environment (optional but recommended):
@@ -49,14 +57,18 @@ To reproduce the proposed model, you need Python 3.8 or higher. It is recommende
 
 ## Running the Code
 
-The main entry point for training the Reinforcement Learning (PPO) model is the `5GML.py` script located in the `src` directory.
+The repository includes two distinct implementations: Reinforcement Learning (Python) and Genetic Algorithm (C++).
+
+### Reinforcement Learning (RL)
+
+The main entry point for training the RL (PPO) model is the `5GML.py` script located in the `src/rl` directory.
 
 ### Basic Training
 
 To start a basic training session with default parameters:
 
 ```bash
-cd src
+cd src/rl
 python 5GML.py
 ```
 
@@ -97,6 +109,22 @@ The training process logs metrics to TensorBoard. You can monitor the progress b
 ```bash
 tensorboard --logdir ./ppo_drone_tensorboard
 ```
+
+### Genetic Algorithm (GA)
+
+The GA implementation is written in C++ and divided into modular steps (Passos).
+
+**Compilation:**
+```bash
+cd src/ga
+g++ -o ga_optimizer Passo*.cpp -std=c++11 -O3
+```
+
+**Execution:**
+```bash
+./ga_optimizer <population_size> <grid_size>
+```
+Example: `./ga_optimizer 500 100`
 
 ## License
 

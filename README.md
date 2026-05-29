@@ -63,7 +63,7 @@ The repository includes two distinct implementations: Reinforcement Learning (Py
 
 The main entry point for training the RL (PPO) model is the `5GML.py` script located in the `src/rl` directory.
 
-### Basic Training
+#### Basic Training
 
 To start a basic training session with default parameters:
 
@@ -72,7 +72,7 @@ cd src/rl
 python 5GML.py
 ```
 
-### Advanced Configuration
+#### Advanced Configuration
 
 The script supports numerous command-line arguments to customize the training process, environment, and neural network architecture. Here are some key parameters:
 
@@ -94,7 +94,7 @@ The script supports numerous command-line arguments to customize the training pr
 python 5GML.py --grid-size 100 --num-drones 25 --timesteps 10000000 --n-envs 16
 ```
 
-### Hyperparameter Optimization (Optuna)
+#### Hyperparameter Optimization (Optuna)
 
 The script includes built-in support for hyperparameter optimization using Optuna:
 
@@ -102,7 +102,7 @@ The script includes built-in support for hyperparameter optimization using Optun
 python 5GML.py --hpo-optuna 1 --hpo-trials 30
 ```
 
-### Monitoring Training
+#### Monitoring Training
 
 The training process logs metrics to TensorBoard. You can monitor the progress by running:
 
@@ -126,6 +126,66 @@ g++ -o ga_optimizer Passo*.cpp -std=c++11 -O3
 ```
 Example: `./ga_optimizer 500 100`
 
+## Documentation
+
+For detailed information about the project, please refer to the following documentation files:
+
+- **[INSTALLATION.md](docs/INSTALLATION.md)** - Detailed installation instructions for different operating systems
+- **[USAGE.md](docs/USAGE.md)** - Comprehensive usage guide with examples and scenarios
+- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Technical architecture and code overview
+- **[COMPARISON.md](docs/COMPARISON.md)** - Detailed comparison between RL and GA approaches
+- **[GA_GUIDE.md](docs/GA_GUIDE.md)** - In-depth guide to the Genetic Algorithm implementation
+
+## Points of Contact
+
+For questions, collaboration, or support regarding this project, please contact:
+
+### Lead Researcher
+
+**PhD Student: Luis Henrique Cantelli Reis**
+- Institution: Federal University of Minas Gerais (UFMG)
+- Email: [luiscantelli@dcc.ufmg.br](mailto:luiscantelli@dcc.ufmg.br)
+- Research Group: [WiNet - Wireless Networks Group](https://www.winet.dcc.ufmg.br/)
+
+### Advisors
+
+**Prof. José Marcos S. Nogueira**
+- Institution: Federal University of Minas Gerais (UFMG)
+- Research Group: [WiNet - Wireless Networks Group](https://www.winet.dcc.ufmg.br/)
+
+**Prof. Daniel F. Macedo**
+- Institution: Federal University of Minas Gerais (UFMG)
+- Research Group: [WiNet - Wireless Networks Group](https://www.winet.dcc.ufmg.br/)
+
+**Prof. Paulo Rettore**
+- Institution: Federal University of Lavras (UFLA)
+
+## Research Group
+
+This work is part of the research conducted at the **WiNet - Wireless Networks Group** at UFMG. For more information about the group and other projects, visit: [https://www.winet.dcc.ufmg.br/](https://www.winet.dcc.ufmg.br/)
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Citation
+
+If you use this project in your research, please cite it as follows:
+
+```bibtex
+@article{Cantelli2025,
+  title={Intelligent Drone Positioning and Routing for Resilient Communications in Contested Environments},
+  author={Reis, Luis Henrique Cantelli and Nogueira, Jos\'e Marcos S. and Macedo, Daniel F. and Rettore, Paulo},
+  journal={xxxxx},
+  year={xxxx},
+  publisher={xxxxx}
+}
+```
+
+## Contributing
+
+We welcome contributions from the research community. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
+## Acknowledgments
+
+This research is supported by the Federal University of Minas Gerais (UFMG) and the Federal University of Lavras (UFLA). We acknowledge the support of the WiNet research group and all collaborators who contributed to this work.

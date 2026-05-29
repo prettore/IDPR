@@ -40,8 +40,8 @@ To reproduce the proposed model, you need Python 3.8 or higher. It is recommende
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/IDPR-Intelligent-Drone-Positioning-and-Routing.git
-   cd IDPR-Intelligent-Drone-Positioning-and-Routing
+   git clone https://github.com/yourusername/IDPR.git
+   cd IDPR
    ```
 
 2. Create and activate a virtual environment (optional but recommended):
